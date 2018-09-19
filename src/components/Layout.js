@@ -6,9 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -20,10 +18,10 @@ import Logo from '../logo.svg'
 const drawerWidth = 240;
 
 const styles = theme => ({
-
-  appFrame: {
+  root: {
     flexGrow: 1,
-    height: 430,
+  },
+  appFrame: {
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -95,8 +93,7 @@ const styles = theme => ({
   'contentShift-right': {
     marginRight: 0,
   },
-
-  'logoToolbar': {
+  'logoNavbar': {
     height: '25px',
     width: '25px',
     margin: '10px'
@@ -158,13 +155,14 @@ class PersistentDrawer extends React.Component {
     }
 
     return (
+      <div className={classes.root}>
         <div className={classes.appFrame}>
           <AppBar
             className={classNames(classes.appBar, {
               [classes.appBarShift]: open,
               [classes[`appBarShift-${anchor}`]]: open,
             })}
-            color = 'default'
+            color='default'
           >
             <Toolbar disableGutters={!open}>
               <IconButton
@@ -175,15 +173,25 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <img src={Logo} alt='charttunelogo' className={classes.logoToolbar}></img>
+              <img src={Logo} alt='Charttune logo' className={classes.logoNavbar}></img>
               <Typography variant="title" color="inherit" noWrap>
                 Chart tune
               </Typography>
             </Toolbar>
           </AppBar>
           {before}
+          <main
+            className={classNames(classes.content, classes[`content-${anchor}`], {
+              [classes.contentShift]: open,
+              [classes[`contentShift-${anchor}`]]: open,
+            })}
+          >
+            <div className={classes.drawerHeader} />
+            {this.props.yield}
+          </main>
           {after}
         </div>
+      </div>
     );
   }
 }
