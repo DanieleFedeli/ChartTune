@@ -16,6 +16,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import LeftDrawer from './LeftDrawer';
+import Logo from '../logo.svg';
+import classnames from 'classnames';
 
 const styles = theme => ({
   root: {
@@ -91,6 +94,15 @@ class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    open: false
+  };
+
+  handleDrawerOpen = () => {
+    this.setState({ open: true});
+  }
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
   };
 
   handleProfileMenuOpen = event => {
@@ -112,10 +124,14 @@ class PrimarySearchAppBar extends React.Component {
 
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
-    const { classes } = this.props;
+    const { classes, theme } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
+    const logoStyle = {
+      width: '25px',
+      height: '25px',
+      margin: '0 10px 0 10px'
+    };
     const renderMenu = (
       <Menu
         anchorEl={anchorEl}
@@ -164,13 +180,14 @@ class PrimarySearchAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
+        <AppBar position="sticky" color='default' className={classnames(classes.appBar, this.state.open && classes.appBarShift)}>
+          <Toolbar disableGutters={!this.state.open}>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
               <MenuIcon />
             </IconButton>
+            <img src={Logo} alt='chart tune' style={logoStyle}></img>
             <Typography className={classes.title} variant="title" color="inherit" noWrap>
-              Material-UI
+              Chart-tune
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -215,6 +232,7 @@ class PrimarySearchAppBar extends React.Component {
         </AppBar>
         {renderMenu}
         {renderMobileMenu}
+        <LeftDrawer></LeftDrawer>
       </div>
     );
   }
