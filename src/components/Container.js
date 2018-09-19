@@ -31,18 +31,30 @@ class Container extends React.Component {
     return (
       <Grid container className={classes.root} spacing={24}>
         <Grid container item xs={12} justify="center" spacing={Number(spacing)}>
-          <Grid>
-            <ChartCard title="Top World" description="Here find the chart for top tunes on the world"/>
+          <Grid item>
+            <ChartCard 
+              title="Top World" 
+              description="Here find the chart for top tunes on the world"
+              image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
+            />
           </Grid>
 
-          <Grid>
-            <ChartCard title="Your Country Top 10" description="Here find the chart of top 10 tunes on your country"/>
+          <Grid item>
+            <ChartCard 
+              title="Your Country Top 10" 
+              description="Here find the chart of top 10 tunes on your country"
+              image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
+            />
           </Grid>
         </Grid>
 
-        <Grid container item xs={12} justify="center">
-          <Grid>
-            <ChartCard title="Top Generds" description="Here find the chart for world's top music genders"/>
+        <Grid container item xs={12} justify="center" spacing={Number(spacing)}>
+          <Grid item>
+            <ChartCard 
+              title="Top Generds" 
+              description="Here find the chart for world's top music genders"
+              image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
+            />
           </Grid>
         </Grid>
       </Grid>

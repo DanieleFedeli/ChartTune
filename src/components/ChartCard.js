@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Icon } from '@material-ui/core';
 
 const styles = {
   card: {
@@ -25,8 +26,8 @@ function ChartCard(props) {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
-          title="Contemplative Reptile"
+          image={props.image}
+          title={props.title}
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
@@ -39,10 +40,10 @@ function ChartCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
+          <Icon>share</Icon> Share
         </Button>
         <Button size="small" color="primary">
-          Learn More
+          <Icon>description</Icon>Learn More
         </Button>
       </CardActions>
     </Card>
