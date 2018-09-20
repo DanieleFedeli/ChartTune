@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Footer from './components/Footer';
-import Layout from './components/Layout';
-import Container from './components/Container';
-
+import { Switch, Route } from "react-router-dom";
+import routes from "./Routes";
 class App extends Component {
   render() {
-    const content = <Container></Container>
     return (
-      <div className="App">
-        <Layout yield= {content} ></Layout>
-        <Footer />
-      </div>
+      <Switch>
+        {routes.map((route, i) => <Route key={i} { ... route} />)}
+      </Switch>
     );
   }
 }

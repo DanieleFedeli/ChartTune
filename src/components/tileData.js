@@ -1,6 +1,7 @@
 // This file is shared across the demos.
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -14,24 +15,30 @@ import PersonIcon from '@material-ui/icons/Person';
 
 export const mailFolderListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <HomeIcon />
-      </ListItemIcon>
-      <ListItemText primary="Home page" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AlternateEmailIcon />
-      </ListItemIcon>
-      <ListItemText primary="About us" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SortIcon />
-      </ListItemIcon>
-      <ListItemText primary="Charts" />
-    </ListItem>
+    <Link to={`/`}>
+      <ListItem button>
+        <ListItemIcon>
+          <HomeIcon />
+        </ListItemIcon>
+        <ListItemText primary="Home page" />
+      </ListItem>
+    </Link>
+    <Link to={`/aboutus`}>
+      <ListItem button>
+        <ListItemIcon>
+          <AlternateEmailIcon />
+        </ListItemIcon>
+        <ListItemText primary="About us" />
+      </ListItem>
+    </Link>
+    <Link to={`/charts`}>
+      <ListItem button>
+        <ListItemIcon>
+          <SortIcon />
+        </ListItemIcon>
+        <ListItemText primary="Charts" />
+      </ListItem>
+    </Link>
   </div>
 );
 

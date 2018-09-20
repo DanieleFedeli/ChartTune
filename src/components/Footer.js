@@ -8,7 +8,7 @@ import Icon from '@material-ui/core/Icon';
 const styles = {
   root: {
     marginTop: 10,
-    position: 'absolute',
+    position: 'fixed',
     bottom: 0,
     width: '100%'
   },

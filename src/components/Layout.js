@@ -20,6 +20,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    width: '100%'
   },
   appFrame: {
     zIndex: 1,
@@ -27,6 +28,7 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     width: '100%',
+    height: '100%'
   },
   appBar: {
     position: 'absolute',
