@@ -6,17 +6,11 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Icon from '@material-ui/core/Icon';
 
 const styles = {
-  root: {
-    marginTop: 10,
-    position: 'fixed',
-    bottom: 0,
-    width: '100%'
-  },
 };
 
 class Footer extends React.Component {
   state = {
-    value: 'recents',
+    value: 'home',
   };
 
   handleChange = (event, value) => {
@@ -29,6 +23,7 @@ class Footer extends React.Component {
 
     return (
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
+        <BottomNavigationAction label="Home" value="home" icon={<Icon>home</Icon>} />
         <BottomNavigationAction label="F.A.Q" value="faq" icon={<Icon>help</Icon>} />
         <BottomNavigationAction label="Our Team" value="team" icon={<Icon>account_circle</Icon>} />
         <BottomNavigationAction label="Feedback" value="feedback" icon={<Icon>feedback</Icon>} />

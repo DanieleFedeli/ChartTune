@@ -13,7 +13,7 @@ const styles = theme => ({
   },
 });
 
-class Container extends React.Component {
+class ChartContainer extends React.Component {
   state = {
     spacing: '24',
   };
@@ -33,7 +33,7 @@ class Container extends React.Component {
         <Grid container item xs={12} justify="center" spacing={Number(spacing)}>
           <Grid item>
             <ChartCard 
-              title="Top World" 
+              title="Top 10 World's Tunes" 
               description="Here find the chart for top tunes on the world"
               image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
             />
@@ -51,7 +51,7 @@ class Container extends React.Component {
         <Grid container item xs={12} justify="center" spacing={Number(spacing)}>
           <Grid item>
             <ChartCard 
-              title="Top Generds" 
+              title="Top 5 Genders" 
               description="Here find the chart for world's top music genders"
               image="https://www.garavagliashowroom.it/wp-content/uploads/2015/04/no-img-placeholder.png"
             />
@@ -62,8 +62,8 @@ class Container extends React.Component {
   }
 }
 
-Container.propTypes = {
+ChartContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Container);
+export default withStyles(styles)(ChartContainer);

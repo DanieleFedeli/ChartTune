@@ -13,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import StickyFooter from 'react-sticky-footer';
+import Footer from '../components/Footer';
 import Logo from '../logo.svg'
 
 const drawerWidth = 240;
@@ -193,6 +195,19 @@ class PersistentDrawer extends React.Component {
           </main>
           {after}
         </div>
+        <StickyFooter
+            bottomThreshold={0}
+            normalStyles={{
+              backgroundColor: "#FFFFF",
+              padding: "0.5rem"
+            }}
+            stickyStyles={{
+              backgroundColor: "#FFFFF",
+              padding: "0.5rem"
+            }}
+          >
+            <Footer />
+          </StickyFooter>
       </div>
     );
   }
