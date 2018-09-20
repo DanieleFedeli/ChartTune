@@ -5,7 +5,7 @@ import ChartSingle from '../components/ChartsSingle';
 
 class Charts extends Component {
   render() {
-    const country = ['Spain', 'Italy', 'France', 'United States of America'];
+    const country = ['Spain', 'Italy', 'France', 'UnitedStatesOfAmerica'];
     const renderSingleChart = 
       <div>
         <Link to={`/linechart`}>

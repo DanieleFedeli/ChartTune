@@ -10,7 +10,7 @@ const styles = theme => ({
   },
   control: {
     padding: theme.spacing.unit * 2,
-  },
+  }
 });
 
 class ChartContainer extends React.Component {
@@ -31,7 +31,7 @@ class ChartContainer extends React.Component {
     return (
       <Grid container className={classes.root} spacing={24}>
         <Grid container item xs={12} justify="center" spacing={Number(spacing)}>
-          <Grid item>
+          <Grid item className={classes.gridItem}>
             <ChartCard 
               title="Top 10 World's Tunes" 
               description="Here find the chart for top tunes on the world"
