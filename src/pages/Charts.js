@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { ListItem, ListItemText } from '@material-ui/core';
 import classnames from 'classnames';
 import List from '@material-ui/core/List';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
+
+const styles = theme => ({
+  root: {
+    flex: 0
+  }
+});
+
 
 class Charts extends Component {
   state = {
@@ -12,6 +19,7 @@ class Charts extends Component {
     data: null
   };
 
+  
   componentDidMount() {
 
     
@@ -29,6 +37,7 @@ class Charts extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { data, loaded, err } = this.state;
     
     console.log(this.state);
@@ -50,19 +59,16 @@ class Charts extends Component {
     else{
       const renderListItems = 
       <div className={classnames.root}>
-        <List component='nav'>
+        <List dense>
           {data.map((item, i) =>
             <ListItem button>
-              <ListItemIcon>
-                <MusicNoteIcon />
-              </ListItemIcon>
-              <ListItemText secondary={i} />
-              <ListItemText primary={item.name} />
+              <ListItemText secondary={i + 1} key={i} className={classes.root} />
+              <ListItemText secondary={<img src={item.image[0]["#text"]} key={i} />} />
+              <ListItemText primary={item.artist.name + " — " + item.name} key={i} />
             </ListItem>
           )}
         </List>
       </div>
-      console.log(renderListItems);
       return (
         <div className="App">
           <Layout yield= {renderListItems}></Layout> 
@@ -73,4 +79,4 @@ class Charts extends Component {
 }
 
 
-export default Charts;
+export default withStyles(styles, { withTheme: true })(Charts);
