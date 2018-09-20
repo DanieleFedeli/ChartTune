@@ -6,7 +6,6 @@ import List from '@material-ui/core/List';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 class Charts extends Component {
-  key = '5a932a24e44f718c2542eac0fb48309a';
   state = {
     err: null,
     loaded: false,
@@ -18,8 +17,14 @@ class Charts extends Component {
     
     fetch('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a932a24e44f718c2542eac0fb48309a&format=json')
       .then(response => response.json())
-      .then(data => this.setState({ data: data.tracks.track, loaded: true})
-      .catch(err => this.setState({err: err, loaded: false}))
+      .then(data => {
+          if ('error' in data){
+            this.setState({err: data.message, loaded: false})
+          }
+          else{
+            this.setState({ data: data.tracks.track, loaded: true})
+          }  
+        }
       );
   }
 
@@ -39,8 +44,7 @@ class Charts extends Component {
         <div className="App">
           <Layout yield= 'Caricamento...' ></Layout> 
         </div>
-      );
-      
+      );    
     }
 
     else{
