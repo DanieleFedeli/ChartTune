@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
-import { withStyles } from '@material-ui/core/styles';
-import { ListItem, ListItemText } from '@material-ui/core';
 import classnames from 'classnames';
 import List from '@material-ui/core/List';
-
-const styles = theme => ({
-  root: {
-    flex: 0
-  },
-  imgcircle: {
-    'border-radius': '50%'
-  }
-});
-
+import ListItemChart from '../components/ListItemChart';
 
 class Charts extends Component {
   state = {
@@ -40,7 +29,6 @@ class Charts extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { data, loaded, err } = this.state;
     
     console.log(this.state);
@@ -64,11 +52,7 @@ class Charts extends Component {
       <div className={classnames.root}>
         <List dense>
           {data.map((item, i) =>
-            <ListItem button>
-              <ListItemText secondary={i + 1} key={i} className={classes.root} />
-              <ListItemText secondary={<img src={item.image[0]["#text"]} key={i} className={classes.imgcircle}/>} />
-              <ListItemText primary={item.artist.name + " — " + item.name} key={i} />
-            </ListItem>
+            <ListItemChart position={i} image={item.image[0]["#text"]} song={item.artist.name + " — " + item.name} />
           )}
         </List>
       </div>
@@ -82,4 +66,4 @@ class Charts extends Component {
 }
 
 
-export default withStyles(styles, { withTheme: true })(Charts);
+export default Charts;
