@@ -38,7 +38,7 @@ class LineChart extends Component {
     if (!loaded) {
       return(
         <div className="App">
-          <Layout yield='Caricamento...' ></Layout> 
+          <Layout yield='Loading Chart...' ></Layout> 
         </div>
       );    
     }
