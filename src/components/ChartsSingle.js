@@ -4,10 +4,6 @@ import List from '@material-ui/core/List';
 import ListItemChart from './ListItemChart';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
-const style = themes => {
-  
-}
-
 class ChartSingle extends Component {
   state = {
     err: null,
@@ -25,6 +21,7 @@ class ChartSingle extends Component {
     fetch(url)
       .then(response => response.json())
       .then(data => {
+          console.log(data);
           if ('error' in data){
             this.setState({err: data.message, loaded: false})
           }
@@ -63,7 +60,15 @@ class ChartSingle extends Component {
           subheader={<ListSubheader component="div">Top 50 {headerText}</ListSubheader>}
         >
           {data.map((item, i) =>
-            <ListItemChart position={i + 1} image={item.image[0]["#text"]} song={item.artist.name + " — " + item.name} key={item.mbid}/>
+            <ListItemChart 
+              position={i + 1} 
+              image={item.image[0]["#text"]} 
+              song={item.artist.name + " — " + item.name} 
+              key={item.name} 
+              playcount={item.playcount} 
+              url={item.url}
+              listeners={item.listeners}
+            />
           )}
         </List>
       </div>
