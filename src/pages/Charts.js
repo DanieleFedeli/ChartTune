@@ -8,6 +8,9 @@ import List from '@material-ui/core/List';
 const styles = theme => ({
   root: {
     flex: 0
+  },
+  imgcircle: {
+    'border-radius': '50%'
   }
 });
 
@@ -63,7 +66,7 @@ class Charts extends Component {
           {data.map((item, i) =>
             <ListItem button>
               <ListItemText secondary={i + 1} key={i} className={classes.root} />
-              <ListItemText secondary={<img src={item.image[0]["#text"]} key={i} />} />
+              <ListItemText secondary={<img src={item.image[0]["#text"]} key={i} className={classes.imgcircle}/>} />
               <ListItemText primary={item.artist.name + " — " + item.name} key={i} />
             </ListItem>
           )}
