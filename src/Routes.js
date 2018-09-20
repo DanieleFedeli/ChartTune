@@ -1,6 +1,7 @@
 import Homepage from "./pages/Homepage";
 import Charts from "./pages/Charts.js";
 import AboutUs from "./pages/AboutUs.js";
+import LineChart from "./pages/LineChart.js"
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: '/aboutus',
     component: AboutUs
+  },
+  {
+    path: '/linechart',
+    component: LineChart
   }
 ]
 

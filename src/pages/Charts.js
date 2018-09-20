@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import classnames from 'classnames';
 import List from '@material-ui/core/List';
 import ListItemChart from '../components/ListItemChart';
+import { Link } from 'react-router-dom';
 
 class Charts extends Component {
   state = {
@@ -50,6 +51,9 @@ class Charts extends Component {
     else{
       const renderListItems = 
       <div className={classnames.root}>
+        <Link to={`/linechart`}>
+          {"See with ChartJS"}<img src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" />
+        </Link>
         <List dense>
           {data.map((item, i) =>
             <ListItemChart position={i} image={item.image[0]["#text"]} song={item.artist.name + " — " + item.name} />
