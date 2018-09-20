@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
+import { Link } from 'react-router-dom';
 import ChartSingle from '../components/ChartsSingle';
 
 class Charts extends Component {
