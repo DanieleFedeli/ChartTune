@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import classnames from 'classnames';
+import List from '@material-ui/core/List';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 class Charts extends Component {
   key = '5a932a24e44f718c2542eac0fb48309a';
@@ -14,16 +18,15 @@ class Charts extends Component {
     
     fetch('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a932a24e44f718c2542eac0fb48309a&format=json')
       .then(response => response.json())
-      .then(data => {
-          console.log(data);
-          this.setState({ data: data, loaded: true})
-        }
+      .then(data => this.setState({ data: data.tracks.track, loaded: true})
+      .catch(err => this.setState({err: err, loaded: false}))
       );
   }
 
   render() {
     const { data, loaded, err } = this.state;
-
+    
+    console.log(this.state);
     if (err){
       return(
         <div className="App">
@@ -41,9 +44,24 @@ class Charts extends Component {
     }
 
     else{
+      const renderListItems = 
+      <div className={classnames.root}>
+        <List component='nav'>
+          {data.map((item, i) =>
+            <ListItem button>
+              <ListItemIcon>
+                <MusicNoteIcon />
+              </ListItemIcon>
+              <ListItemText secondary={i} />
+              <ListItemText primary={item.name} />
+            </ListItem>
+          )}
+        </List>
+      </div>
+      console.log(renderListItems);
       return (
         <div className="App">
-          <Layout yield= {data} ></Layout> 
+          <Layout yield= {renderListItems}></Layout> 
         </div>
       );
     }
