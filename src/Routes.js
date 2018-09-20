@@ -1,5 +1,5 @@
 import Homepage from "./pages/Homepage";
-import Charts from "./pages/Charts.js";
+import Charts from "./pages/Charts";
 import AboutUs from "./pages/AboutUs.js";
 import LineChart from "./pages/LineChart.js"
 
