@@ -110,6 +110,8 @@ class PersistentDrawer extends React.Component {
     anchor: 'left',
   };
 
+
+  /* Functions for making sidebar opening or closing */
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -118,16 +120,11 @@ class PersistentDrawer extends React.Component {
     this.setState({ open: false });
   };
 
-  handleChangeAnchor = event => {
-    this.setState({
-      anchor: event.target.value,
-    });
-  };
-
   render() {
     const { classes, theme } = this.props;
     const { anchor, open } = this.state;
 
+    /* Sidebar rendering */
     const drawer = (
       <Drawer
         variant="persistent"
@@ -143,24 +140,19 @@ class PersistentDrawer extends React.Component {
           </IconButton>
         </div>
         <Divider />
-        <List>{mailFolderListItems}</List>
+        <List>
+          {mailFolderListItems}</List>
         <Divider />
-        <List>{otherMailFolderListItems}</List>
+        <List>
+          {otherMailFolderListItems}
+        </List>
       </Drawer>
     );
-
-    let before = null;
-    let after = null;
-
-    if (anchor === 'left') {
-      before = drawer;
-    } else {
-      after = drawer;
-    }
 
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
+          {/* Rendering toolbar */}
           <AppBar
             className={classNames(classes.appBar, {
               [classes.appBarShift]: open,
@@ -183,7 +175,9 @@ class PersistentDrawer extends React.Component {
               </Typography>
             </Toolbar>
           </AppBar>
-          {before}
+          {/* Calling sidebar rendering*/}
+          {drawer}
+          {/* Rendering main content page */}
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
               [classes.contentShift]: open,
@@ -193,8 +187,8 @@ class PersistentDrawer extends React.Component {
             <div className={classes.drawerHeader} />
             {this.props.yield}
           </main>
-          {after}
         </div>
+        {/* Rendering footer */}
         <StickyFooter
             bottomThreshold={0}
             normalStyles={{

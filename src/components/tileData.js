@@ -13,6 +13,7 @@ import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import SortIcon from '@material-ui/icons/Sort';
 import PersonIcon from '@material-ui/icons/Person';
 
+/* Icon on sidebar */
 export const mailFolderListItems = (
   <div>
     <Link to={`/`}>

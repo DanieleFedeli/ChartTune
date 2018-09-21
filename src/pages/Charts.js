@@ -14,18 +14,23 @@ const styles = theme => ({
     display: 'grid',
     [theme.breakpoints.down('xl')]: {
       'grid-template-areas': '". . . . ."',
+      'grid-template-columns': '1fr 1fr 1fr 1fr 1fr'
     },
     [theme.breakpoints.down('lg')]: {
       'grid-template-areas': '". . . ."',
+      'grid-template-columns': '1fr 1fr 1fr 1fr'
     },
     [theme.breakpoints.down('md')]: {
       'grid-template-areas': '". . ."',
+      'grid-template-columns': '1fr 1fr 1fr'
     },
     [theme.breakpoints.down('sm')]: {
       'grid-template-areas': '". ."',
+      'grid-template-columns': '1fr 1fr'
     },
     [theme.breakpoints.down('xs')]: {
       'grid-template-areas': '"."',
+      'grid-template-columns': '1fr'
     },
   }
 });
@@ -33,7 +38,7 @@ const styles = theme => ({
 class Charts extends Component {
   render() {
     const { classes } = this.props;
-    const country = ['Spain', 'Italy', 'France', 'Brazil', 'G'];
+    const country = ['United states', 'France', 'Spain', 'United Kingdom', 'Italy', 'Germany'];
     const renderSingleChart = 
     <div>
       <Link to={`/linechart`} className={classes.link}>
