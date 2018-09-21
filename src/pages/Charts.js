@@ -11,34 +11,20 @@ const styles = theme => ({
     'text-decoration': 'none'
   },
   container:{
-    display: 'grid',
-    [theme.breakpoints.down('xl')]: {
-      'grid-template-areas': '". . . . ."',
-      'grid-template-columns': '1fr 1fr 1fr 1fr 1fr'
-    },
-    [theme.breakpoints.down('lg')]: {
-      'grid-template-areas': '". . . ."',
-      'grid-template-columns': '1fr 1fr 1fr 1fr'
-    },
-    [theme.breakpoints.down('md')]: {
-      'grid-template-areas': '". . ."',
-      'grid-template-columns': '1fr 1fr 1fr'
-    },
-    [theme.breakpoints.down('sm')]: {
-      'grid-template-areas': '". ."',
-      'grid-template-columns': '1fr 1fr'
-    },
-    [theme.breakpoints.down('xs')]: {
-      'grid-template-areas': '"."',
-      'grid-template-columns': '1fr'
-    },
+    display: 'flex',
+    'align-items': 'flex-start',
+    'flex-wrap': 'wrap',
+    'justify-content': 'center',
+    'columns': '20rem'
   }
 });
 
 class Charts extends Component {
   render() {
     const { classes } = this.props;
-    const country = ['United states', 'France', 'Spain', 'United Kingdom', 'Italy', 'Germany'];
+    const country = 
+    ['United states', 'France', 'Spain', 'United Kingdom', 'Italy', 'Germany', 'China', 'Turkey', 'Mexico', 'Austria', 'Greece', 'Ukraine', 
+      'Russian Federation', 'Poland', 'Saudi Arabia'];
     const renderSingleChart = 
     <div>
       <Link to={`/linechart`} className={classes.link}>

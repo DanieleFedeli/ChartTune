@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Share from './Share';
 
 const styles = theme => ({
   root: {
@@ -23,7 +24,8 @@ const styles = theme => ({
       margin: '0 !important'
   },
   chart: {
-    margin: 10
+    'margin': 5,
+    width: 450
   },
   media: {
     objectFit: 'cover',
@@ -35,7 +37,7 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2,
   },
   notExpanded: {
-    'max-height': 215
+    'max-height': 225
   }
 });
 
@@ -155,6 +157,7 @@ class ChartSingle extends Component {
           
           <ExpansionPanelDetails>
             <div>
+              <Share />
               {data.map((item, i) =>
                 <ListItemChart 
                   position={i + 1} 
