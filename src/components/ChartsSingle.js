@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import List from '@material-ui/core/List';
 import ListItemChart from './ListItemChart';
 import Card from '@material-ui/core/Card';
@@ -8,10 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const styles = {
+const styles = theme => ({
   card: {
-    maxWidth: 345,
     margin: 10
   },
   media: {
@@ -19,8 +18,11 @@ const styles = {
   },
   header: {
     width: '100%'
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
   }
-};
+});
 
 class ChartSingle extends Component {
   state = {
@@ -51,34 +53,15 @@ class ChartSingle extends Component {
   render() {
     const { data, loaded, err } = this.state;
     const { country, classes } = this.props;
+    const headerText = country ? country : 'Global';
 
     if (err){
       return(
-        <div className={classnames.App}>
-          {err} 
-        </div>
-      );
-    }
-    if (!loaded) {
-      return(
-        <div className={classnames.App}>
-          <span>Caricamento...</span>
-        </div>
-      );    
-    }
-
-    else{
-      const headerText = country ? country : 'Global';
-      return (
         <Card className={classes.card}>
         <CardActionArea className={classes.header}>
-          <CardMedia
-            component="img"
-            className={classes.media}
-            height="140"
-            src={data[0].image[3]["#text"]}
-            title="Contemplative Reptile"
-          />
+          <Typography>
+            Errore nel fetching
+          </Typography>
           <CardContent>
             <Typography gutterBottom variant="headline" component="h2">
               Top 50 {headerText}
@@ -86,20 +69,61 @@ class ChartSingle extends Component {
           </CardContent>
         </CardActionArea>   
         <List dense >
-          {data.map((item, i) =>
-            <ListItemChart 
-              position={i + 1} 
-              image={item.image[0]["#text"]} 
-              song={item.artist.name + " — " + item.name} 
-              key={item.name} 
-              playcount={item.playcount} 
-              url={item.url}
-              listeners={item.listeners}
-            />
-          )}
+          {err}
         </List>
-           
       </Card>
+      );
+    }
+
+    if (!loaded) {
+      return(
+        <Card className={classes.card}>
+          <CardActionArea className={classes.header}>
+            <CircularProgress className={classes.progress} />
+              <CardContent>
+                <Typography gutterBottom variant="headline" component="h2">
+                  Top 50 {headerText}
+                </Typography>
+              </CardContent>
+          </CardActionArea>   
+          <List dense >
+            <CircularProgress className={classes.progress} />
+          </List>
+        </Card>
+      );    
+    }
+
+    else{
+      return (
+        <Card className={classes.card}>
+          <CardActionArea className={classes.header}>
+            <CardMedia
+              component="img"
+              className={classes.media}
+              height="140"
+              src={data[0].image[3]["#text"]}
+              title={data[0].name}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="headline" component="h2">
+                Top 50 {headerText}
+              </Typography>
+            </CardContent>
+          </CardActionArea>   
+          <List dense >
+            {data.map((item, i) =>
+              <ListItemChart 
+                position={i + 1} 
+                image={item.image[0]["#text"]} 
+                song={item.artist.name + " — " + item.name} 
+                key={item.name} 
+                playcount={item.playcount} 
+                url={item.url}
+                listeners={item.listeners}
+              />
+            )}
+          </List>
+        </Card>
       );
     }
   }

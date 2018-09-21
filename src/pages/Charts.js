@@ -5,28 +5,45 @@ import Layout from '../components/Layout';
 import { Link } from 'react-router-dom';
 import ChartSingle from '../components/ChartsSingle';
 
-const styles = {
+const styles = theme => ({
   link: {
     color: '#000000',
     'text-decoration': 'none'
   },
-  linkCaption: {
-  },
-  linkImage: {
+  container:{
+    display: 'grid',
+    [theme.breakpoints.down('xl')]: {
+      'grid-template-areas': '". . . . ."',
+    },
+    [theme.breakpoints.down('lg')]: {
+      'grid-template-areas': '". . . ."',
+    },
+    [theme.breakpoints.down('md')]: {
+      'grid-template-areas': '". . ."',
+    },
+    [theme.breakpoints.down('sm')]: {
+      'grid-template-areas': '". ."',
+    },
+    [theme.breakpoints.down('xs')]: {
+      'grid-template-areas': '"."',
+    },
   }
-};
+});
 
 class Charts extends Component {
   render() {
-    const country = ['Spain', 'Italy', 'France', 'UnitedStatesOfAmerica'];
+    const { classes } = this.props;
+    const country = ['Spain', 'Italy', 'France', 'Brazil', 'G'];
     const renderSingleChart = 
-      <div>
-        <Link to={`/linechart`} className={classes.link}>
-          <span className={classes.linkCaption}>{"See with ChartJS"}</span><img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" />
-        </Link>
+    <div>
+      <Link to={`/linechart`} className={classes.link}>
+        <span className={classes.linkCaption}>{"See with ChartJS"}</span><img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" />
+      </Link>
+      <div className={classes.container}>   
         <ChartSingle key={'global'}/>
         {country.map((c)  =>  <ChartSingle country={c} key={c} />)}
       </div>
+    </div>
     return (
       <div className="App">
         <Layout yield= {renderSingleChart} ></Layout> 
