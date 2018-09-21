@@ -9,8 +9,9 @@ const styles = {
 };
 
 class Footer extends React.Component {
+
   state = {
-    value: 'home',
+    value: window.location.pathname.substring(1)
   };
 
   handleChange = (event, value) => {
@@ -22,11 +23,12 @@ class Footer extends React.Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-        <BottomNavigationAction label="Home" value="home" icon={<Icon>home</Icon>} />
-        <BottomNavigationAction label="F.A.Q" value="faq" icon={<Icon>help</Icon>} />
-        <BottomNavigationAction label="Our Team" value="team" icon={<Icon>account_circle</Icon>} />
-        <BottomNavigationAction label="Feedback" value="feedback" icon={<Icon>feedback</Icon>} />
+      <BottomNavigation value={value} onChange={this.handleChange}>
+        <BottomNavigationAction label="Home" value="" href="/" icon={<Icon>home</Icon>} />
+        <BottomNavigationAction label="F.A.Q" value="faq" href="/faq" icon={<Icon>help</Icon>} />
+        <BottomNavigationAction label="Our Team" value="aboutus" href="/aboutus" icon={<Icon>account_circle</Icon>} />
+        <BottomNavigationAction label="Feedback" value="feedback" href="/feedback" icon={<Icon>feedback</Icon>} />
+        <BottomNavigationAction label="Charts" value="charts" href="/charts" icon={<Icon>show_chart</Icon>} />
       </BottomNavigation>
     );
   }
