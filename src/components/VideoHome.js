@@ -19,11 +19,12 @@ const styles = ({
   title: {
     position: 'absolute',
     bottom: 0,
-    background: 'white',
+    background: '#FF3333',
+    color: 'white',
     width: '100%',
     fontSize: '5rem',
-    opacity: 0.5,
-    mixBlendMode: 'exclusion',
+    opacity: 1,
+    mixBlendMode: 'multiply',
   }
 });
 
@@ -38,7 +39,6 @@ class VideoHome extends Component {
         <h1 className={classes.title} >
           CHART TUNE
         </h1>
-        
       </div>
     );
   }
