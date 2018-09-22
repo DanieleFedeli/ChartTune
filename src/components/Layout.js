@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import Footer from '../components/Footer';
 import Logo from '../logo.svg'
+import { Typography } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -20,11 +21,17 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
   },
+  titleHide: {
+    display: 'none'
+  },
   logo: {
     height: 25,
-    width: 25
+    width: 25,
+    margin: 5
   },
+  
   drawerPaper: {
+    'z-index': 0,
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
@@ -73,6 +80,8 @@ class PersistentDrawer extends React.Component {
     this.setState({ open: false });
   };
 
+  
+
   render() {
     const { classes } = this.props;
     const { anchor, open } = this.state;
@@ -91,6 +100,13 @@ class PersistentDrawer extends React.Component {
         <div className={classes.toolbar}>
           <IconButton>
             <img src={Logo} alt='Chart tune logo' className={classes.logo}></img>
+            <Typography variant='headline' 
+              className={classNames(classes.title, {
+                [classes.titleHide]: open === false,
+            })}
+            >
+              CHART TUNE
+            </Typography>
           </IconButton>
         </div>
         <Divider />

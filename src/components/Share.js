@@ -14,6 +14,7 @@ const url =
    'http://www.tumblr.com/share?v=3&u=http%3A%2F%2Flocalhost%3A3000&quote=ChartTune&s=']
 
 class Share extends Component {
+  
   render() {
     return (
       <div>
