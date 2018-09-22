@@ -32,6 +32,8 @@ class AboutUs extends Component {
               image="https://avatars2.githubusercontent.com/u/32765589?s=400&u=07cd34ec4235e9a2443fc69c0e13155f26a11426&v=4" 
               description="Coding since when 15 years old, now studying Computer Engineering at 'Sapienza' University of Rome" 
               github="https://github.com/Mikyxello" 
+              instagram="https://www.instagram.com/mikyxello/"
+              linkedin="https://www.linkedin.com/in/michele-a-216601158/"
             />
           </Grid>
           <Grid item>
@@ -39,7 +41,9 @@ class AboutUs extends Component {
               title="Daniele Fedeli" 
               image="https://avatars3.githubusercontent.com/u/37077048?s=400&v=4" 
               description="Student in Computer Engineering at 'Sapienza' University of Rome since 2015." 
-              github="https://github.com/DanieleFedeli" 
+              github="https://github.com/DanieleFedeli"
+              instagram="https://www.instagram.com/letsfed/"
+              linkedin="https://www.linkedin.com/in/daniele-fedeli-a8725415b/"
             />
           </Grid>
         </Grid>
