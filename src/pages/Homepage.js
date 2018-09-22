@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Layout from '../components/Layout';
-import ChartContainer from '../components/ChartContainer';
-
+import VideoHome from '../components/VideoHome';
 
 class Homepage extends Component {
   render() {
-    const content = <div><ChartContainer /></div>
+    const content = <div><VideoHome /></div>
     return (
       <div className="App">
         <Layout yield= {content} ></Layout> 

@@ -3,17 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import StickyFooter from 'react-sticky-footer';
 import Footer from '../components/Footer';
 import Logo from '../logo.svg'
 
@@ -22,86 +15,46 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    width: '100%'
-  },
-  appFrame: {
+    height: '100%',
     zIndex: 1,
-    overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-    width: '100%',
-    height: '100%'
   },
-  appBar: {
-    position: 'absolute',
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  'appBarShift-left': {
-    marginLeft: drawerWidth,
-  },
-  'appBarShift-right': {
-    marginRight: drawerWidth,
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20,
-  },
-  hide: {
-    display: 'none',
+  logo: {
+    height: 25,
+    width: 25
   },
   drawerPaper: {
     position: 'relative',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3,
-    transition: theme.transitions.create('margin', {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  'content-left': {
-    marginLeft: -drawerWidth,
-  },
-  'content-right': {
-    marginRight: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  'contentShift-left': {
-    marginLeft: 0,
+  drawerPaperClose: {
+    overflowX: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    width: theme.spacing.unit * 7,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing.unit * 9,
+    },
   },
-  'contentShift-right': {
-    marginRight: 0,
+  content: {
+    flexGrow: 1,
+    overflowX: 'auto',
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
   },
-  'logoNavbar': {
-    height: '25px',
-    width: '25px',
-    margin: '10px'
-  }
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  },
 });
 
 class PersistentDrawer extends React.Component {
@@ -121,63 +74,37 @@ class PersistentDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { anchor, open } = this.state;
 
     /* Sidebar rendering */
     const drawer = (
       <Drawer
-        variant="persistent"
-        anchor={anchor}
-        open={open}
+        variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
         }}
+        open={this.state.open}
+        onMouseEnter={this.handleDrawerOpen}
+        onMouseLeave={this.handleDrawerClose}
       >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        <div className={classes.toolbar}>
+          <IconButton>
+            <img src={Logo} alt='Chart tune logo' className={classes.logo}></img>
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {mailFolderListItems}</List>
+        <List>{mailFolderListItems}</List>
         <Divider />
-        <List>
-          {otherMailFolderListItems}
-        </List>
+        <List>{otherMailFolderListItems}</List>
       </Drawer>
     );
 
     return (
       <div className={classes.root}>
-        <div className={classes.appFrame}>
-          {/* Rendering toolbar */}
-          <AppBar
-            className={classNames(classes.appBar, {
-              [classes.appBarShift]: open,
-              [classes[`appBarShift-${anchor}`]]: open,
-            })}
-            color='default'
-          >
-            <Toolbar disableGutters={!open}>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, open && classes.hide)}
-              >
-                <MenuIcon />
-              </IconButton>
-              <img src={Logo} alt='Charttune logo' className={classes.logoNavbar}></img>
-              <Typography variant="title" color="inherit" noWrap>
-                Chart tune
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          {/* Calling sidebar rendering*/}
-          {drawer}
-          {/* Rendering main content page */}
+        {/* Calling sidebar rendering*/}
+        {drawer}
+        {/* Rendering main content page */}
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
               [classes.contentShift]: open,
@@ -187,21 +114,7 @@ class PersistentDrawer extends React.Component {
             <div className={classes.drawerHeader} />
             {this.props.yield}
           </main>
-        </div>
-        {/* Rendering footer */}
-        <StickyFooter
-            bottomThreshold={0}
-            normalStyles={{
-              backgroundColor: "#FFFFF",
-              padding: "0.5rem"
-            }}
-            stickyStyles={{
-              backgroundColor: "#FFFFF",
-              padding: "0.5rem"
-            }}
-          >
-            <Footer />
-          </StickyFooter>
+        <Footer/>
       </div>
     );
   }

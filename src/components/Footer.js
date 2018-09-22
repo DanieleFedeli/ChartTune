@@ -1,11 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import Icon from '@material-ui/core/Icon';
 
 const styles = {
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%'
+  }
 };
 
 class Footer extends React.Component {
@@ -19,11 +23,11 @@ class Footer extends React.Component {
   };
 
   render() {
-    //const { classes } = this.props;
+    const { classes } = this.props;
     const { value } = this.state;
 
     return (
-      <BottomNavigation value={value} onChange={this.handleChange}>
+      <BottomNavigation value={value} onChange={this.handleChange} className={classes.footer}>
         <BottomNavigationAction label="Home" value="" href="/" icon={<Icon>home</Icon>} />
         <BottomNavigationAction label="F.A.Q" value="faq" href="/faq" icon={<Icon>help</Icon>} />
         <BottomNavigationAction label="Our Team" value="aboutus" href="/aboutus" icon={<Icon>account_circle</Icon>} />
@@ -34,8 +38,5 @@ class Footer extends React.Component {
   }
 }
 
-Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Footer);
