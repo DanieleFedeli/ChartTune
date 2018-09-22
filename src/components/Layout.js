@@ -56,6 +56,7 @@ const styles = theme => ({
     overflowX: 'auto',
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    marginBottom: 70
   },
   footer: {
     position: 'absolute',
@@ -123,11 +124,9 @@ class PersistentDrawer extends React.Component {
         {/* Rendering main content page */}
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
-              [classes.contentShift]: open,
-              [classes[`contentShift-${anchor}`]]: open,
+              [classes.contentShift]: open
             })}
           >
-            <div className={classes.drawerHeader} />
             {this.props.yield}
           </main>
         <Footer/>

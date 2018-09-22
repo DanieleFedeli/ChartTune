@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
-import ListItemChart from './ListItemChart';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Share from './Share';
+import DataExpanded from './DataExpanded';
 
 const styles = theme => ({
   root: {
@@ -46,7 +45,8 @@ class ChartSingle extends Component {
     err: null,
     loaded: false,
     data: null,
-    expanded: false
+    expanded: false,
+    clicked: false
   };
 
   componentDidMount() {
@@ -80,8 +80,12 @@ class ChartSingle extends Component {
     }
   }
 
+  renderExpanded = () => {
+    this.setState({clicked: true})
+  }
+
   render() {
-    const { data, loaded, err, expanded } = this.state;
+    const { data, loaded, err, expanded, clicked } = this.state;
     const { country, classes } = this.props;
     const headerText = country ? country : 'Global';
 
@@ -138,6 +142,7 @@ class ChartSingle extends Component {
               root: classes.root,
               content: classes.content
             }}
+            onClick = {this.renderExpanded}
           >
             <CardActionArea className={classNames(classes.root)}  component='div'>
               <CardMedia 
@@ -145,6 +150,7 @@ class ChartSingle extends Component {
                 className={classes.media} 
                 height="140" src={data[0].image[3]["#text"]} 
                 title={data[0].name}        
+              
               />
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
@@ -154,23 +160,10 @@ class ChartSingle extends Component {
             </CardActionArea>
             
           </ExpansionPanelSummary>
-          
-          <ExpansionPanelDetails>
-            <div>
-              <Share />
-              {data.map((item, i) =>
-                <ListItemChart 
-                  position={i + 1} 
-                  image={item.image[0]["#text"]} 
-                  song={item.artist.name + " — " + item.name} 
-                  key={item.name} 
-                  playcount={item.playcount} 
-                  url={item.url}
-                  listeners={item.listeners}
-                />
-              )}
-            </div>
+          <ExpansionPanelDetails> 
+            {clicked ? <DataExpanded data={data} /> : null}
           </ExpansionPanelDetails>
+          
         </ExpansionPanel>
       );
     }

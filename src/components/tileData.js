@@ -19,7 +19,7 @@ export const mailFolderListItems = (
     <Link to={`/`}>
       <ListItem button>
         <ListItemIcon>
-          <HomeIcon />
+          <HomeIcon color="error"/>
         </ListItemIcon>
         <ListItemText primary="Home page" />
       </ListItem>
@@ -27,7 +27,7 @@ export const mailFolderListItems = (
     <Link to={`/aboutus`}>
       <ListItem button>
         <ListItemIcon>
-          <AlternateEmailIcon />
+          <AlternateEmailIcon color="error"/>
         </ListItemIcon>
         <ListItemText primary="About us" />
       </ListItem>
@@ -35,7 +35,7 @@ export const mailFolderListItems = (
     <Link to={`/charts`}>
       <ListItem button>
         <ListItemIcon>
-          <SortIcon />
+          <SortIcon color="error"/>
         </ListItemIcon>
         <ListItemText primary="Charts" />
       </ListItem>
@@ -47,25 +47,25 @@ export const otherMailFolderListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <PersonIcon />
+        <PersonIcon color="error" />
       </ListItemIcon>
       <ListItemText primary="Show profile" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <MailIcon />
+        <MailIcon color="error" />
       </ListItemIcon>
       <ListItemText primary="Private message" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <NotificationsIcon />
+        <NotificationsIcon color="error" />
       </ListItemIcon>
       <ListItemText primary="Notifications" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <StarIcon />
+        <StarIcon color="error" />
       </ListItemIcon>
       <ListItemText primary="Favorite songs" />
     </ListItem>
