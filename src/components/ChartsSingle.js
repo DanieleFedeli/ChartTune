@@ -51,22 +51,15 @@ class ChartSingle extends Component {
 
   componentDidMount() {
     /* TODO: Hide api key and set it as env variable. Make url more elegant*/
-    var url = 'http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a932a24e44f718c2542eac0fb48309a&format=json';
-    if (this.props.country){
-      url = 'http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country='+this.props.country+'&api_key=5a932a24e44f718c2542eac0fb48309a&format=json'
-    }
+    const places = this.props.country ? this.props.country : 'all';
+    const url = 'https://cors-anywhere.herokuapp.com/https://rss.itunes.apple.com/api/v1/' + places + '/itunes-music/top-songs/all/50/explicit.json'
 
     fetch(url)
       .then(response => response.json())
-      .then(data => {
-          if ('error' in data){
-            this.setState({err: data.message, loaded: false})
-          }
-          else{
-            this.setState({ data: data.tracks.track, loaded: true})
-          }  
-        }
-      );
+      .then(data => this.setState({ data: data.feed.results, loaded: true})
+    );
+        
+        
   }
 
   handleChange = () => {
@@ -88,6 +81,7 @@ class ChartSingle extends Component {
     const { data, loaded, err, expanded, clicked } = this.state;
     const { country, classes } = this.props;
     const headerText = country ? country : 'Global';
+
 
     /* We check the state of components and we handle 
     error rendering a card with err message */
@@ -130,6 +124,16 @@ class ChartSingle extends Component {
     }
 
     else{
+      const renderCardMedia = (
+        <CardMedia 
+          component='img'
+          className={classes.media} 
+          height="140" src={ data[0].artworkUrl100 } 
+          title={data[0].name}        
+        
+        />
+      );
+
       return (
         <ExpansionPanel className={classNames(classes.chart, {
           [classes.notExpanded]: expanded === false
@@ -144,24 +148,18 @@ class ChartSingle extends Component {
             }}
             onClick = {this.renderExpanded}
           >
-            <CardActionArea className={classNames(classes.root)}  component='div'>
-              <CardMedia 
-                component='img'
-                className={classes.media} 
-                height="140" src={data[0].image[3]["#text"]} 
-                title={data[0].name}        
-              
-              />
-              <CardContent>
-                <Typography gutterBottom variant="headline" component="h2">
-                  Top 50 {headerText}
-                </Typography>
-              </CardContent>
+          <CardActionArea className={classNames(classes.root)}  component='div'>
+            { renderCardMedia }
+            <CardContent>
+              <Typography gutterBottom variant="headline" component="h2">
+                Top 50 {headerText}
+              </Typography>
+            </CardContent>
             </CardActionArea>
             
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails> 
-            {clicked ? <DataExpanded data={data} /> : null}
+          <ExpansionPanelDetails>
+            {clicked? <DataExpanded data={data}/> : <span></span> }
           </ExpansionPanelDetails>
           
         </ExpansionPanel>

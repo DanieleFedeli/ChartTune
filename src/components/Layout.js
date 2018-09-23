@@ -106,7 +106,7 @@ class PersistentDrawer extends React.Component {
                 [classes.titleHide]: open === false,
             })}
             >
-              CHART TUNE
+              CHARTUNE
             </Typography>
           </IconButton>
         </div>

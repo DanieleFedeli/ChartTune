@@ -18,7 +18,7 @@ class Share extends Component {
   render() {
     return (
       <div>
-        {url.map(url => <SocialIcon url={url} style={style} /> )}
+        {url.map(url => <SocialIcon url={url} style={style} key={url}/> )}
       </div>
     );
   }

@@ -15,7 +15,7 @@ const styles = theme => ({
     'align-items': 'flex-start',
     'flex-wrap': 'wrap',
     'justify-content': 'center',
-    'columns': '20rem'
+    'columns': '20rem',
   }
 });
 
@@ -23,15 +23,15 @@ class Charts extends Component {
   render() {
     const { classes } = this.props;
     const country = 
-    ['United states', 'France', 'Spain', 'United Kingdom', 'Italy', 'Germany', 'China', 'Turkey', 'Mexico', 'Austria', 'Greece', 'Ukraine', 
-      'Russian Federation', 'Poland', 'Saudi Arabia'];
+    ['US', 'FR', 'SP', 'UK', 'IT', 'GR',
+    'RS', 'PL', 'SA'];
     const renderSingleChart = 
     <div>
       <Link to={`/linechart`} className={classes.link}>
         <span className={classes.linkCaption}>{"See with ChartJS"}</span><img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" />
       </Link>
       <div className={classes.container}>   
-        <ChartSingle key={'global'}/>
+        <ChartSingle key={'global'}/> 
         {country.map((c)  =>  <ChartSingle country={c} key={c} />)}
       </div>
     </div>

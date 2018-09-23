@@ -15,7 +15,9 @@ const styles = theme => ({
     'margin-right': 5
   },
   imgcircle: {
-    'border-radius': '50%'
+    'border-radius': '50%',
+    width: 34,
+    height: 34
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -36,7 +38,7 @@ class ListItemChart extends React.Component {
   };
 
   render() {
-    const { classes, position, image, song, playcount, url, listeners } = this.props;
+    const { classes, position, image, song, album, url} = this.props;
 
     return (
       <div className={classes.root}>
@@ -49,10 +51,7 @@ class ListItemChart extends React.Component {
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button className={classes.nested}>
-              <ListItemText primary={"Playcount: " + playcount} />
-            </ListItem>
-            <ListItem button className={classes.nested}>
-              <ListItemText primary={"Ascoltatori: " + listeners} />
+              <ListItemText primary={ album } />
             </ListItem>
             <ListItem button className={classes.nested}>
               <ListItemText primary={<a href={url} className={classes.link}>Ascolta qui</a>} />
