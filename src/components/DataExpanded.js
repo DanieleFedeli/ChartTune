@@ -9,9 +9,7 @@ class DataExpanded extends Component {
     
     const buildGenres = (song) => {
       var genres = []
-      song.genres.map(item => {
-        genres << item.name
-      })
+      song.genres.map(item => genres.push(item.name))
       return genres
     }
 

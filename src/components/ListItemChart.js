@@ -38,8 +38,22 @@ class ListItemChart extends React.Component {
   };
 
   render() {
-    const { classes, position, image, song, album, url} = this.props;
+    const { classes, position, image, song, album, url, genres} = this.props;
+    
+    const renderGenres = (
+      /* Saltiamo l'ultimo elemento dell'array poichè 
+      è sempre presente l'elemento 'music'*/
+      genres.filter(genre => 
+        genres.indexOf(genre) < genres.length - 1
+      ).map(genre => 
+        <ListItem button className={classes.nested}>
+          <ListItemText secondary={ genre } />
+        </ListItem>
+      )
+    
+    );
 
+    console.log(renderGenres);
     return (
       <div className={classes.root}>
         <ListItem button onClick={this.handleClick}>
@@ -54,8 +68,11 @@ class ListItemChart extends React.Component {
               <ListItemText primary={ album } />
             </ListItem>
             <ListItem button className={classes.nested}>
+              <ListItemText primary="Generi" />
+            </ListItem>
+            {renderGenres}
+            <ListItem button className={classes.nested}>
               <ListItemText primary={<a href={url} className={classes.link}>Ascolta qui</a>} />
-              <ListItemText primary={'Qui voglio usare spotify'}></ListItemText>
             </ListItem>
           </List>
         </Collapse>
