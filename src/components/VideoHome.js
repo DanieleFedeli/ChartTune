@@ -37,7 +37,7 @@ class VideoHome extends Component {
           <source src={ConcertVideo} type='video/mp4'></source>
         </video>
         <h1 className={classes.title} >
-          CHARTUNE
+          CharTune
         </h1>
       </div>
     );

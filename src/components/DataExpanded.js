@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
 import Share from './Share';
 import ListItemChart from './ListItemChart';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
+
+const styles = {
+  link: {
+    color: '#000000',
+    'font-size': '1em',
+    'text-decoration': 'none',
+    'border': '1px solid #C0C0C0',
+    'border-radius': '15px 50px 30px',
+    'padding': '5px',
+  },
+};
 
 class DataExpanded extends Component {
 
   render () {
+    const { classes } = this.props;
     const { data } = this.props;
     
     const buildGenres = (song) => {
@@ -16,6 +31,9 @@ class DataExpanded extends Component {
     return(
       <div>
         <Share></Share>
+        <Link to={`/linechart`} className={classes.link}>
+          <span>{"See with ChartJS"}<img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" /></span>
+        </Link>
         {data.map((item, i) =>
           <ListItemChart 
             position={i + 1}
@@ -32,4 +50,8 @@ class DataExpanded extends Component {
   }
 }
 
-export default DataExpanded;
+DataExpanded.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(DataExpanded);

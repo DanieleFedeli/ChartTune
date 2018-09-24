@@ -2,14 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
-import { Link } from 'react-router-dom';
 import ChartSingle from '../components/ChartsSingle';
 
-const styles = theme => ({
-  link: {
-    color: '#000000',
-    'text-decoration': 'none'
-  },
+const styles = {
   container:{
     display: 'flex',
     'align-items': 'flex-start',
@@ -17,7 +12,7 @@ const styles = theme => ({
     'justify-content': 'center',
     'columns': '20rem',
   }
-});
+};
 
 class Charts extends Component {
   render() {
@@ -27,9 +22,6 @@ class Charts extends Component {
     'RS', 'PL', 'SA'];
     const renderSingleChart = 
     <div>
-      <Link to={`/linechart`} className={classes.link}>
-        <span className={classes.linkCaption}>{"See with ChartJS"}</span><img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" />
-      </Link>
       <div className={classes.container}>   
         <ChartSingle key={'global'}/> 
         {country.map((c)  =>  <ChartSingle country={c} key={c} />)}

@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import Footer from '../components/Footer';
-import Logo from '../logo.svg'
+import Logo from '../logo.png'
 import { Typography } from '@material-ui/core';
 
 const drawerWidth = 240;
@@ -106,7 +106,7 @@ class PersistentDrawer extends React.Component {
                 [classes.titleHide]: open === false,
             })}
             >
-              CHARTUNE
+              CharTune
             </Typography>
           </IconButton>
         </div>

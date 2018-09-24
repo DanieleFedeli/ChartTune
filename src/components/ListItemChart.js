@@ -8,6 +8,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
+
 const styles = theme => ({
 
   position: {
@@ -73,7 +74,7 @@ class ListItemChart extends React.Component {
             {renderGenres}
             <ListItem button className={classes.nested}>
               <ListItemText primary={<a href={url} className={classes.link}>Ascolta qui</a>} />
-            </ListItem>
+            </ListItem>            
           </List>
         </Collapse>
       </div>
