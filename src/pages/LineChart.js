@@ -2,7 +2,22 @@ import React, { Component } from 'react';
 import Layout from '../components/Layout';
 import classnames from 'classnames';
 import {Line} from 'react-chartjs-2';
+import queryString from 'query-string';
+import LastFMLogo from '../lastfm.png';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 
+const styles = {
+  link: {
+    color: '#000000',
+    'font-size': '1em',
+    'text-decoration': 'none',
+    'border': '1px solid #C0C0C0',
+    'border-radius': '15px 50px 30px',
+    'padding': '5px',
+  },
+};
 
 class LineChart extends Component {
   state = {
@@ -12,7 +27,43 @@ class LineChart extends Component {
   };
 
   componentDidMount() {
-    fetch('http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=5a932a24e44f718c2542eac0fb48309a&format=json')
+    let params = queryString.parse(this.props.location.search);
+    var country;
+
+    switch (params.country) {
+      case 'SP':
+        country = 'Spain';
+        break;
+      case 'US':
+        country = 'United States of America';
+        break;
+      case 'FR':
+        country = 'France';
+        break;
+      case 'UK':
+        country = 'United Kingdom of Great Britain and Northern Ireland';
+        break;
+      case 'IT':
+        country = 'Italy';
+        break;
+      case 'GR':
+        country = 'Greece';
+        break;
+      case 'RS':
+        country = 'Russia';
+        break;
+      case 'PL':
+        country = 'Poland';
+        break;
+      case 'SA':
+        country = 'Saudi Arabia';
+        break;
+      default:
+        country = 'Italy';
+        break;
+    }
+
+    fetch('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=' + country + '&api_key=5a932a24e44f718c2542eac0fb48309a&format=json')
       .then(response => response.json())
       .then(data => {
           if ('error' in data){
@@ -26,6 +77,7 @@ class LineChart extends Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { data, loaded, err } = this.state;
     
     if (err){
@@ -107,6 +159,9 @@ class LineChart extends Component {
 
       const renderListItems = 
       <div className={classnames.root}>
+        <Link to='https://www.last.fm/' className={classes.link} >
+        <span>{"Made with "}<img className={classes.linkImage} src={LastFMLogo} alt="LastFM" width="50px" /></span>
+        </Link>
         <Line data={chartData} options={chartOptions} />
       </div>
       return (
@@ -118,5 +173,8 @@ class LineChart extends Component {
   }
 }
 
+LineChart.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default LineChart;
+export default withStyles(styles)(LineChart);

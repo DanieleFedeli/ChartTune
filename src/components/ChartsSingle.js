@@ -159,7 +159,7 @@ class ChartSingle extends Component {
             
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            {clicked? <DataExpanded data={data}/> : <span></span> }
+            {clicked? <DataExpanded country={headerText} data={data}/> : <span></span> }
           </ExpansionPanelDetails>
           
         </ExpansionPanel>

@@ -28,10 +28,10 @@ class DataExpanded extends Component {
       return genres
     }
 
-    return(
+    return(      
       <div>
         <Share></Share>
-        <Link to={`/linechart`} className={classes.link}>
+        <Link to={'/linechart?country=' + this.props.country + ''} country={this.props.country} className={classes.link}>
           <span>{"See with ChartJS"}<img className={classes.linkImage} src="http://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS Logo" width="50px" /></span>
         </Link>
         {data.map((item, i) =>

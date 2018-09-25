@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import SendIcon from '@material-ui/icons/Send';
 
 const styles = theme => ({
   container: {
@@ -23,8 +25,17 @@ const styles = theme => ({
   menu: {
     width: 200,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
   textArea: {
-  }
+  },
 });
 
 const types = [
@@ -113,6 +124,10 @@ class Feedback extends React.Component {
         variant="outlined"
         fullWidth
       />
+      <Button variant="extendedFab" aria-label="Delete" className={classes.button}>
+        <SendIcon className={classes.extendedIcon} />
+        Send Feedback
+      </Button>
     </form>
 
 
