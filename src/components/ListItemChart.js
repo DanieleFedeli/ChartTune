@@ -54,7 +54,6 @@ class ListItemChart extends React.Component {
     
     );
 
-    console.log(renderGenres);
     return (
       <div className={classes.root}>
         <ListItem button onClick={this.handleClick}>

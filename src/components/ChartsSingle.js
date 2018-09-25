@@ -58,8 +58,7 @@ class ChartSingle extends Component {
       .then(response => response.json())
       .then(data => this.setState({ data: data.feed.results, loaded: true})
     );
-        
-        
+     
   }
 
   handleChange = () => {
