@@ -4,15 +4,29 @@ import { withStyles } from '@material-ui/core/styles';
 import Layout from '../components/Layout';
 import ChartSingle from '../components/ChartsSingle';
 
-const styles = {
+const styles = theme => ({
   container:{
-    display: 'flex',
-    'align-items': 'flex-start',
-    'flex-wrap': 'wrap',
-    'justify-content': 'center',
-    'columns': '20rem',
+    display: 'grid',
+    gridTemplateAreas: '". . . . ."',
+    gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
+    [theme.breakpoints.down('lg')]: {
+      gridTemplateAreas: '". . . ."',
+      gridTemplateColumns: '1fr 1fr 1fr 1fr',
+    },
+    [theme.breakpoints.down('md')]: {
+      gridTemplateAreas: '". . ."',
+      gridTemplateColumns: '1fr 1fr 1fr',
+    },
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateAreas: '". . "',
+      gridTemplateColumns: '1fr 1fr',
+    },
+    [theme.breakpoints.down('xs')]: {
+      gridTemplateAreas: '"."',
+      gridTemplateColumns: '1fr',
+    },
   }
-};
+});
 
 class Charts extends Component {
   render() {

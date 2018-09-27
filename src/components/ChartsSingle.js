@@ -24,7 +24,6 @@ const styles = theme => ({
   },
   chart: {
     'margin': 5,
-    width: 450
   },
   media: {
     objectFit: 'cover',

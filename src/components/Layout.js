@@ -10,17 +10,26 @@ import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import Footer from '../components/Footer';
 import Logo from '../logo.png'
 import { Typography } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: '100%',
-    zIndex: 1,
-    position: 'relative',
-    display: 'flex',
+
+    [theme.breakpoints.up('sm')]: {
+      
+      height: '100%',
+      zIndex: 1,
+      position: 'relative',
+      display: 'flex',
+    },
+    
   },
+
   titleHide: {
     display: 'none'
   },
@@ -80,12 +89,23 @@ class PersistentDrawer extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
   
 
   render() {
     const { classes } = this.props;
     const { anchor, open } = this.state;
+
+    /* AppBar rendering */
+    const appBar = (
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <img src={Logo} alt='Chart tune logo' className={classes.logo}></img>
+          <Typography variant="title" color="inherit">
+            CharTune
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    );
 
     /* Sidebar rendering */
     const drawer = (
@@ -117,10 +137,12 @@ class PersistentDrawer extends React.Component {
       </Drawer>
     );
 
+    /* Conditional rendering! Se lo schermo è md o sm, viene generata una barra,
+    altrimenti la sidebar */
     return (
       <div className={classes.root}>
         {/* Calling sidebar rendering*/}
-        {drawer}
+        {isWidthUp('sm', this.props.width) ? drawer : appBar }
         {/* Rendering main content page */}
           <main
             className={classNames(classes.content, classes[`content-${anchor}`], {
@@ -137,7 +159,6 @@ class PersistentDrawer extends React.Component {
 
 PersistentDrawer.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(PersistentDrawer);
+export default withWidth()(withStyles(styles)(PersistentDrawer));
