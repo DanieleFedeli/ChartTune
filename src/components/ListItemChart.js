@@ -7,7 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-
+import SpotifyLogo from '../spotify.png';
+import iTunesLogo from '../itunes.png';
 
 const styles = theme => ({
 
@@ -23,9 +24,24 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
-  link: {
+  spotifyLink: {
+    'text-decoration': 'none',
+    color: '#FFFFFF',
+    'background-color': '#1ED660',
+    'border-radius': '10px',
+    margin: '0 auto',
+    padding: '10px'
+  },
+  itunesLink: {
+    'text-decoration': 'none',
     color: '#000000',
-    'text-decoration': 'none'
+    'background-color': '#FFFFFF',
+    'border-radius': '10px',
+    margin: '0 auto',
+    padding: '10px'
+  },
+  linkIcon: {
+    'vertical-align': 'middle'
   }
 });
 
@@ -39,17 +55,13 @@ class ListItemChart extends React.Component {
   };
 
   render() {
-    const { classes, position, image, song, album, url, genres} = this.props;
+    const { classes, position, image, song, album, itunesurl, spotifyurl, genres} = this.props;
     
     const renderGenres = (
       /* Saltiamo l'ultimo elemento dell'array poichè 
       è sempre presente l'elemento 'music'*/
       genres.filter(genre => 
         genres.indexOf(genre) < genres.length - 1
-      ).map(genre => 
-        <ListItem button className={classes.nested}>
-          <ListItemText secondary={ genre } />
-        </ListItem>
       )
     
     );
@@ -65,15 +77,17 @@ class ListItemChart extends React.Component {
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button className={classes.nested}>
-              <ListItemText primary={ album } />
+              <ListItemText primary={<div><strong>Album:</strong> {album}</div>} />
             </ListItem>
             <ListItem button className={classes.nested}>
-              <ListItemText primary="Generi" />
+              <ListItemText primary={<div><strong>Genre:</strong> {renderGenres.toString()}</div>} />
             </ListItem>
-            {renderGenres}
             <ListItem button className={classes.nested}>
-              <ListItemText primary={<a href={url} className={classes.link}>Ascolta qui</a>} />
-            </ListItem>            
+              <ListItemText primary={<a href={itunesurl} className={classes.itunesLink}><span>Buy on iTunes</span> <img className={classes.linkIcon} src={iTunesLogo} alt="iTunes" width="20px" /></a>} />
+            </ListItem>
+            <ListItem button className={classes.nested}>
+              <ListItemText primary={<a href={spotifyurl} className={classes.spotifyLink}><span>Listen on Spotify</span> <img className={classes.linkIcon} src={SpotifyLogo} alt="Spotify" width="20px" /></a>} />
+            </ListItem>    
           </List>
         </Collapse>
       </div>

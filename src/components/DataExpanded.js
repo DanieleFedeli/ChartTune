@@ -10,7 +10,7 @@ const styles = {
     color: '#000000',
     'font-size': '1em',
     'text-decoration': 'none',
-    'border': '1px solid #C0C0C0',
+    'border': '1px solid #e7e9ed',
     'border-radius': '15px 50px 30px',
     'padding': '5px',
   },
@@ -41,7 +41,8 @@ class DataExpanded extends Component {
             image={ item.artworkUrl100 } 
             song={ item.artistName + " — " + item.name } 
             key={ item.id } 
-            url={ item.url }
+            itunesurl={ item.url }
+            spotifyurl={ item.url }
             genres={ buildGenres(item) }
           />
         )}

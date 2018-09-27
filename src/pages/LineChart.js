@@ -31,7 +31,6 @@ class LineChart extends Component {
     labels: null,
     country: null,
     countrycode: null,
-    countrycodelong: null,
     datasets: null
   };
 
@@ -163,6 +162,7 @@ class LineChart extends Component {
       };
 
       const chartOptions = {
+        responsive: true,
         elements: {
           line: {
               tension: 0
