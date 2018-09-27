@@ -12,17 +12,36 @@ import { SocialIcon } from 'react-social-icons';
 const styles = {
   card: {
     maxWidth: 345,
+    display: 'grid',
+    gridTemplateAreas:  '"image" "social"'
   },
   media: {
     // ⚠ object-fit is not supported by IE11.
     objectFit: 'cover',
   },
+
+  info: {
+    gridArea: 'image',
+    height: 335
+  },
+
+  description: {
+    gridArea: 'description',
+   
+  },
+  
+  social: {
+    gridArea: 'social'
+  }
+
+
 };
 
 const sociallink = {
   height: 35,
   width: 35,
   margin: 5
+
 }
 
 function TeamCard(props) {
@@ -30,7 +49,7 @@ function TeamCard(props) {
   
   return (
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea className={classes.info}>
           <CardMedia
             component="img"
             className={classes.media}
@@ -38,7 +57,7 @@ function TeamCard(props) {
             image={props.image}
             title={props.title}
           />
-          <CardContent>
+          <CardContent className={classes.description}>
             <Typography gutterBottom variant="headline" component="h2">
               {props.title}
             </Typography>
@@ -47,7 +66,7 @@ function TeamCard(props) {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions className={classes.social}>
           <SocialIcon url={props.github} style={sociallink} />
           <SocialIcon url={props.instagram} style={sociallink} />
           <SocialIcon url={props.linkedin} style={sociallink} />
